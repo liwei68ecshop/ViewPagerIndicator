@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+
+apply from: 'gradle.properties'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.0.0'
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ViewpagerIndicator'
+
+    publishedGroupId = 'com.szy'
+    libraryName = 'ViewpagerIndicator'
+    artifact = 'viewpagerindicator'
+
+    libraryDescription = 'PullableLayout makes it easy to add the pull-to-load feature to your app.'
+
+    siteUrl = 'https://github.com/zongren/ViewpagerIndicator'
+    gitUrl = 'https://github.com/zongren/ViewpagerIndicator.git'
+
+    libraryVersion = VERSION_NAME
+
+    developerId = 'zongren'
+    developerName = '宗仁'
+    developerEmail = 'zongren@live.com'
+
+    LICENSE_NAME='The Apache Software License, Version 2.0'
+    LICENSE_URL='http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+//apply from: 'nexus-maven.gradle'
+
+apply from: 'installv1.gradle'
+apply from: 'bintrayv1.gradle'
